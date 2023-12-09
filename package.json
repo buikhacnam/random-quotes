@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "data": "node data",
     "example": "node example"
   },
   "dependencies": {
