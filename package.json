@@ -1,13 +1,23 @@
 {
-  "name": "nodejs",
+  "name": "random-quotes",
   "version": "1.0.0",
+  "author": "buikhacnam11@gmail.com",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "data": "node data",
-    "example": "node example"
+    "scrape": "node scripts/scrape.js",
+    "uglyfy": "uglifyjs --compress --mangle -- data/quotes.js > data/temp.quotes.js && mv data/temp.quotes.js data/quotes.js",
+    "assign": "node scripts/assign.js && yarn uglyfy",
+    "example": "node example",
+    "start": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest"
   },
-  "dependencies": {
-    "jsdom": "^23.0.1"
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231121.0",
+    "jsdom": "^23.0.1",
+    "uglify-js": "^3.17.4",
+    "vitest": "^1.0.4",
+    "wrangler": "3.19.0"
   }
 }
