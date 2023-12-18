@@ -4,7 +4,7 @@ const { JSDOM } = require('jsdom');
 const API_URL = 'https://www.goodreads.com/quotes?format=json';
 const QUOTES_PER_PAGE = 30;
 const DATA_FILE = 'data/data.json';
-const TOTAL_PAGES = 5; // can be maximum 1000
+const TOTAL_PAGES = 100; // can be maximum 100
 
 async function fetchQuotes(page = 1) {
     const url = `${API_URL}&page=${page}`;
@@ -24,7 +24,9 @@ function parseQuotes(data, page) {
     return Array.from(articles).map((article, index) => {
         const id = (page - 1) * QUOTES_PER_PAGE + index + 1;
         const quote = article.querySelector('blockquote')?.textContent.trim();
-        const by = article.querySelector('.quoteAuthor')?.textContent.trim() || 'Unknown';
+        let by = article.querySelector('.quoteAuthor')?.textContent.trim() || 'Unknown';
+        //remove the last comma if it exists
+        by = by.replace(/,\s*$/, '');
 
         return quote ? { [id]: { quote, by } } : null;
     }).filter(Boolean);

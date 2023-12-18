@@ -1,6 +1,6 @@
 import { QUOTES } from '../data/quotes';
 
-const TOTAL_QUOTES = 30000;
+const TOTAL_QUOTES = 3000;
 const RANDOM_NUM = 1;
 const LIMIT = 10;
 const CACHE_TTL = 3600 * 24;
